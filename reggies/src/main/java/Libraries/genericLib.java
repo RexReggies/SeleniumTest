@@ -200,5 +200,15 @@ public class genericLib {
 		}
 		System.out.println("Mouse " + action + " Performed");
 	}
+	public static void Click(String xpath) {
+		WebElement ele = driver.findElement(By.xpath(xpath));
+		if(ele!=null) {
+			ele.click();
+			System.out.println("Clicked");
+		}
+		else
+			System.out.println("Element not Found"+xpath);
+		
+	}
 
 }
