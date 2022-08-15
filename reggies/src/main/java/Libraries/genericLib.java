@@ -210,5 +210,11 @@ public class genericLib {
 			System.out.println("Element not Found"+xpath);
 		
 	}
+	public static void quit() {
+		System.out.println("!!!!!End Of Case!!!!!");
+		driver.close();
+		driver.quit();
+		
+	}
 
 }

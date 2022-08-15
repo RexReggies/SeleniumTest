@@ -17,10 +17,7 @@ public class test1 {
 		//driver.get("https://www.google.com");
 		genericLib.initialize();
 		genericLib.navigateTo("https://www.google.co.in/");
-		System.out.println("Push Test");
-		System.out.println("Push Test2");
-		System.out.println("Conflicting change");
-		System.out.println("Direct to master push Test33");
+		genericLib.quit();
 	}
 
 }
