@@ -20,6 +20,7 @@ public class test1 {
 		System.out.println("Push Test");
 		System.out.println("Push Test2");
 		System.out.println("Conflicting change");
+		System.out.println("Direct to master push Test33");
 	}
 
 }
