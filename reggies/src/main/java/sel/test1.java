@@ -19,6 +19,7 @@ public class test1 {
 		genericLib.navigateTo("https://www.google.co.in/");
 		System.out.print("Pushpa");
 		genericLib.quit();
+		System.out.print("Pushpa2");
 		
 	}
 
