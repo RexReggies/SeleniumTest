@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -203,12 +204,17 @@ public class genericLib {
 	public static void Click(String xpath) {
 		WebElement ele = driver.findElement(By.xpath(xpath));
 		if(ele!=null) {
+			 focus(ele);
 			ele.click();
 			System.out.println("Clicked");
 		}
 		else
 			System.out.println("Element not Found"+xpath);
 		
+	}
+	public static void focus(WebElement ele) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].setAttribute('style', arguments[1]);", ele, "background: yellow; border:2px solid red;");
 	}
 	public static void quit() {
 		System.out.println("!!!!!End Of Case!!!!!");

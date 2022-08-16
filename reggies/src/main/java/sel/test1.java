@@ -17,6 +17,8 @@ public class test1 {
 		//driver.get("https://www.google.com");
 		genericLib.initialize();
 		genericLib.navigateTo("https://www.google.co.in");
+		genericLib.Click("(//input[@aria-label='Google Search'])[2]");
+		System.out.print("Basic Frame Work Check Completed");
 		genericLib.quit();
 	}
 
