@@ -16,11 +16,8 @@ public class test1 {
 		//WebDriver driver = new ChromeDriver();
 		//driver.get("https://www.google.com");
 		genericLib.initialize();
-		genericLib.navigateTo("https://www.google.co.in/");
-		System.out.print("Pushpa");
+		genericLib.navigateTo("https://www.google.co.in");
 		genericLib.quit();
-		System.out.print("Pushpa2");
-		
 	}
 
 }
