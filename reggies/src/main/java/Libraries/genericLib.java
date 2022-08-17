@@ -48,7 +48,7 @@ public class genericLib {
 		driver.manage().window().maximize();
 		wait = new WebDriverWait(driver, Duration.ofSeconds(300));
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		driver.get("https://www.google.co.in/");
+		//driver.get("https://www.google.co.in/");
 
 	}
 
