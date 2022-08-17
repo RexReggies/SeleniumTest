@@ -11,7 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class test1 {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
+	// TODO Auto-generated method stub
 		//WebDriverManager.chromedriver().setup();
 		//WebDriver driver = new ChromeDriver();
 		//driver.get("https://www.google.com");
