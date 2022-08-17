@@ -64,23 +64,32 @@ public class genericLib {
 		System.out.println("navigatedTo" + Url);
 	}
 
-	public static void WaitForElement(String xpath, int secs) {
+	public static void WaitForElement(String path, int secs) {
 		System.out.println("WaitForElement");
 		wait = new WebDriverWait(driver, Duration.ofSeconds(secs));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+		if(path.startsWith("css=")) {
+			path= path.replace("css=","");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(path)));
+		}
+		else if(path.startsWith("xpath=")) {
+			path = path.replace("xpath=","");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+		}
+		else
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
 		System.out.println("Exiting WaitForElement");
 	}
 
-	public static void hardAssert(String xpath, boolean condition) throws Exception {
+	public static void hardAssert(String path, boolean condition) throws Exception {
 		try {
 			if (condition == true) {
-				Assert.isTrue(true, xpath + "Element Found", (driver.findElement(By.xpath(xpath)).isDisplayed()));
-				System.out.println(xpath + " Element Found");
+				Assert.isTrue(true, path + "Element Found", (getWebElement(path).isDisplayed()));
+				System.out.println(path + " Element Found");
 			}
 			if (condition == false) {
 				// Assert.assertFalse(driver.findElement(By.xpath(xpath)).isDisplayed());
-				Assert.isTrue(false, xpath + "Element Found", (driver.findElement(By.xpath(xpath)).isDisplayed()));
-				System.out.println(xpath + " Element Not Found");
+				Assert.isTrue(false, path + "Element Found", (getWebElement(path).isDisplayed()));
+				System.out.println(path + " Element Not Found");
 			}
 			System.out.println("Exiting hardAssert");
 		} catch (Exception e) {
@@ -88,9 +97,9 @@ public class genericLib {
 		}
 	}
 
-	public static void selectOneChoice(String xpath, String value) throws Exception {
-		WaitForElement(xpath, 120);
-		WebElement ele = driver.findElement(By.xpath(xpath));
+	public static void selectOneChoice(String path, String value) throws Exception {
+		WaitForElement(path, 120);
+		WebElement ele = getWebElement(path);
 		String node = ele.getAttribute("nodeName");
 		if (node.equalsIgnoreCase("Select")) {
 			System.out.println("Selecting Option from DropDown");
@@ -104,9 +113,9 @@ public class genericLib {
 		System.out.println("Element Selected" + value);
 	}
 
-	public static void check(String xpath) throws Exception {
-		WaitForElement(xpath, 120);
-		WebElement ele = driver.findElement(By.xpath(xpath));
+	public static void check(String path) throws Exception {
+		WaitForElement(path, 120);
+		WebElement ele = getWebElement(path);
 		boolean check = ele.isSelected();
 		System.out.println("Check->" + check);
 		if (check) {
@@ -128,8 +137,8 @@ public class genericLib {
 		robot.keyRelease(KeyEvent.VK_ESCAPE);
 	}
 
-	public static void slider(String xpath, String direction) throws InterruptedException {
-		WebElement slider = driver.findElement(By.xpath(xpath));
+	public static void slider(String path, String direction) throws InterruptedException {
+		WebElement slider = getWebElement(path);
 		String dir[] = direction.split(";");
 		for (String str : dir) {
 			if (str.equalsIgnoreCase("Right"))
@@ -192,24 +201,24 @@ public class genericLib {
 		}
 	}
 
-	public static void MouseClick(String xpath, String action) {
-		WaitForElement(xpath, 120);
+	public static void MouseClick(String path, String action) {
+		WaitForElement(path, 120);
 		Actions a = new Actions(driver);
-		WebElement ele = driver.findElement(By.xpath(xpath));
+		WebElement ele = getWebElement(path);
 		if (action.equalsIgnoreCase("ContextClick")) {
 			a.moveToElement(ele).contextClick().build().perform();
 		}
 		System.out.println("Mouse " + action + " Performed");
 	}
-	public static void Click(String xpath) {
-		WebElement ele = driver.findElement(By.xpath(xpath));
+	public static void Click(String path) {
+		WebElement ele = getWebElement(path);
 		if(ele!=null) {
 			 focus(ele);
 			ele.click();
 			System.out.println("Clicked");
 		}
 		else
-			System.out.println("Element not Found"+xpath);
+			System.out.println("Element not Found"+path);
 		
 	}
 	public static void focus(WebElement ele) {
@@ -221,6 +230,30 @@ public class genericLib {
 		driver.close();
 		driver.quit();
 		
+	}
+	public static WebElement getWebElement(String path) {
+		WebElement ele=null;
+		if(path.startsWith("css=")) {
+			path = path.replace("css=","");
+			System.out.println("Path->"+path);
+			 ele = driver.findElement(By.cssSelector(path));
+		}
+		else if(path.startsWith("xpath=")) {
+			path= path.replace("xpath=","");
+			 ele = driver.findElement(By.xpath(path));
+		}
+		else
+			ele = driver.findElement(By.xpath(path));
+		
+		System.out.println("Element Found ");
+		
+		return ele;
+		
+	}
+	public  static void set(String path,String value) {
+		WebElement ele=getWebElement(path);
+		ele.sendKeys(value);
+		System.out.println("Set Value->"+value);
 	}
 
 }
