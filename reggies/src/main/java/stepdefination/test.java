@@ -20,6 +20,7 @@ public class test {
 	@Then("GoogleHomePage Displayed")
 	public void google_home_page_displayed() {
 	    // Write code here that turns the phrase above into concrete actions
+		//
 	    throw new io.cucumber.java.PendingException();
 	}
 }
