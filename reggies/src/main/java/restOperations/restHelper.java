@@ -15,6 +15,7 @@ public class restHelper {
 	        System.out.println("Testing 1 - Send Http GET request");
 	        http.sendGet();
 	        //https://jsonmock.hackerrank.com/api/food_outlets?city=<city>&page=<pageNumber>
+
 	}
 	private void sendGet() throws Exception {
 
