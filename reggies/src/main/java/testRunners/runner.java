@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-				features = "feature/GoogleVerification.feature",
+				features = "feature/Login1.feature",
 				plugin = { "pretty", "html:target/cucumber-reports/cucumber-html","json:target/json/json-google.json"},
 				glue= {"stepdefination"}
 				)
