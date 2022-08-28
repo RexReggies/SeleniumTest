@@ -16,10 +16,17 @@ public class Login1 {
 	@When("I search the  {string}")
 	public void i_search_the(String string) throws Exception{
 		genericLib.set("css=input[title='Search']",string);
+		genericLib.Click("(//input[@value='Google Search'])[2]");
 	}
 	@Then("I verify the {string} in step")
 	public void i_verify_the_in_step(String string) throws Exception {
-		genericLib.hardAssert("xpath=//img[@alt='"+string+"']",true);
+		genericLib.hardAssert("xpath=//img[contains(@alt,'"+string+"')]",true);
+		genericLib.Click("css=img[alt='Google']");
+	}
+	@Given("I close the Browser")
+	public void i_close_the_browser() {
+	    genericLib.quit();
+	    
 	}
 
 
